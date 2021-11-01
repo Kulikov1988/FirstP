@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Dialogs.module.css";
+import { LoremIpsum } from "react-lorem-ipsum";
 
 const DialogItem = (props) => {
   let path = "/dialogs/" + props.id;
@@ -27,12 +28,42 @@ const Dialogs = () => {
   ];
 
   let messageData = [
-    { id: 1, message: "Krasavchik" },
-    { id: 2, message: "I can" },
-    { id: 3, message: "Dude" },
-    { id: 4, message: "Animal" },
-    { id: 5, message: "Joker" },
-    { id: 6, message: "Extrem" },
+    {
+      id: 1,
+      message: (
+        <LoremIpsum avgWordsPerSentence={1} avgSentencesPerParagraph={3} />
+      ),
+    },
+    {
+      id: 2,
+      message: (
+        <LoremIpsum avgWordsPerSentence={3} avgSentencesPerParagraph={2} />
+      ),
+    },
+    {
+      id: 3,
+      message: (
+        <LoremIpsum avgWordsPerSentence={3} avgSentencesPerParagraph={5} />
+      ),
+    },
+    {
+      id: 4,
+      message: (
+        <LoremIpsum avgWordsPerSentence={3} avgSentencesPerParagraph={3} />
+      ),
+    },
+    {
+      id: 5,
+      message: (
+        <LoremIpsum avgWordsPerSentence={2} avgSentencesPerParagraph={6} />
+      ),
+    },
+    {
+      id: 6,
+      message: (
+        <LoremIpsum avgWordsPerSentence={5} avgSentencesPerParagraph={3} />
+      ),
+    },
   ];
 
   return (
