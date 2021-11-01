@@ -1,0 +1,18 @@
+body {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.dialogs{
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+.dialogsItems {
+  padding: 20px;
+}
+.dialogsItems .active{
+  color: bisque;
+}
+.messages{
+padding: 20px;
+}
