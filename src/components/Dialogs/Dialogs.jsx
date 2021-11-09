@@ -1,15 +1,14 @@
 import React from "react";
 import s from "./Dialogs.module.css";
-// import { LoremIpsum } from "react-lorem-ipsum";
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 
 const Dialogs = (props) => {
  
-  let messageElements = props.messageData.map((m) => <Message message={m.message} />);
+  let messageElements = props.state.messageData.map((m) => <Message message={m.message} />);
 
-  let dialogsElements = props.dialogsData.map((dialog) => (
-    <DialogItem name={dialog.name} id={dialog.id} />
+  let dialogsElements = props.state.dialogsData.map((dialog) => (
+    <DialogItem name={dialog.name} id={dialog.id} img={dialog.img} fotka={dialog.fotka} />
   ));
 
   return (
