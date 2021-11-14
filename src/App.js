@@ -8,19 +8,18 @@ import News from './components/Profile/News/News';
 import Music from './components/Profile/Music/Music';
 import Settings from './components/Profile/Settings/Settings';
 import { Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+
 
 const App = (props) => {
   return (
-    <BrowserRouter>
+    
       <div className='app-wrapper font-link'>
         <Header />
-        <Navbar />
+        <Navbar state={props.state.friendsPage}/>
         <div className='app-wrapper-content'>
           <Route path='/news' component={News} />
           <Route path='/music' component={Music} />
           <Route path='/settings' component={Settings} />
-
           <Route path="/dialogs" 
           render={ () => <Dialogs state={props.state.dialogsPage} />} />
           <Route path='/profile' 
@@ -28,7 +27,7 @@ const App = (props) => {
        
         </div>
       </div>
-    </BrowserRouter>);
+    );
 }
 
 export default App;

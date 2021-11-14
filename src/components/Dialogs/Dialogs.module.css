@@ -16,7 +16,7 @@ body {
 .messages{
 padding: 20px;
 }
-img {
+.dialogsItems img {
   border-radius: 50px;
     padding: 5px;
     width: 40px;

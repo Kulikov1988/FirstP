@@ -1,6 +1,10 @@
 .header {
     grid-area: h;
-    background-color: green;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvMt37FMVZwuLPergGr351LtHks0a32sATeA&usqp=CAU);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: space;
+    ;
 }
 
 .header img {

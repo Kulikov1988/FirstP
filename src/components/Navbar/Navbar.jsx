@@ -1,9 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
+import Friends from "./Friends";
 console.log(s);
 
-const Navbar = () => {
+const Navbar = (props) => {
+  
+  let friendsData = props.state.friendsData.map((fData) => (
+    <Friends name={fData.name} id={fData.id} img={fData.img}/>
+  ));
+
   return (
     <nav className={s.nav}>
       <div className={s.item}>
@@ -32,26 +38,7 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className={s.friend}>
-        Friends
-        <div>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxFrjdjrgOA0ozkgA6y7FwCw830fuJoccPjQ&usqp=CAU"
-            alt=""
-          />
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxFrjdjrgOA0ozkgA6y7FwCw830fuJoccPjQ&usqp=CAU"
-            alt=""
-          />
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxFrjdjrgOA0ozkgA6y7FwCw830fuJoccPjQ&usqp=CAU"
-            alt=""
-          />
-        </div>
-        <div className={s.friend}>
-          <span>Dima </span>
-          <span>Sasha </span>
-          <span>Petya </span>
-        </div>
+      {friendsData}
       </div>
     </nav>
   );
