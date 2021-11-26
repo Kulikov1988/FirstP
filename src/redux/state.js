@@ -1,6 +1,10 @@
 import React from 'react';
 import { LoremIpsum, Avatar } from "react-lorem-ipsum";
 
+let renderEntireTree = () => {
+  console.log('state chaned');
+};
+
 let state = {
   dialogsPage: {
     dialogsData: [
@@ -10,7 +14,7 @@ let state = {
       { id: 4, name: "Kostia", img: (<Avatar gender="male" />) },
       { id: 5, name: "Yulia", img: (<Avatar gender="female" />) },
       { id: 6, name: "Vlad", img: (<Avatar gender="male" />) },
-      { id: 7, name: "Lina",img: (<Avatar gender="female" />) },
+      { id: 7, name: "Lina", img: (<Avatar gender="female" />) },
     ],
     messageData: [
       {
@@ -81,37 +85,62 @@ let state = {
           <LoremIpsum avgWordsPerSentence={3} avgSentencesPerParagraph={4} />
         ),
       },
-    ]
+    ],
+    newPostText: 'Privet Tolianchik'
   },
   friendsPage: {
-    
+
     friendsData: [
       {
         id: 1,
         name: "Dima",
         img: <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_cxqxnM-PyVCEhd3gELTF4IQJYf-kmk9qhA&usqp=CAU"
-        alt=""
-      />
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_cxqxnM-PyVCEhd3gELTF4IQJYf-kmk9qhA&usqp=CAU"
+          alt=""
+        />
       },
       {
         id: 2,
         name: "Sasha",
         img: <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxFrjdjrgOA0ozkgA6y7FwCw830fuJoccPjQ&usqp=CAU"
-        alt=""
-      />
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxFrjdjrgOA0ozkgA6y7FwCw830fuJoccPjQ&usqp=CAU"
+          alt=""
+        />
       },
       {
         id: 3,
         name: "Petya",
         img: <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBpFo-yE9V9f6idya5UCXlwvuTf229Z2Sing&usqp=CAU"
-        alt=""
-      />
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBpFo-yE9V9f6idya5UCXlwvuTf229Z2Sing&usqp=CAU"
+          alt=""
+        />
       }
     ],
-  }
+  },
+};
+
+window.state = state;
+
+export const addPost = () => {
+  let newPost = {
+    id: 5,
+    likesCount: 0,
+    message: state.profilePage.newPostText
+  };
+
+  state.profilePage.posts.push(newPost);
+  state.profilePage.newPostText = '';
+  renderEntireTree(state);
+};
+
+export const updateNewPostText = (newText) => {
+
+  state.profilePage.newPostText = newText;
+  renderEntireTree(state);
+};
+
+export const subscribe = (observer) => {
+  renderEntireTree = observer;
 };
 
 export default state;

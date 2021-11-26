@@ -9,13 +9,14 @@
 
    grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
-   background-color:green;
+   /* background-color:green; */
 }
 
 .app-wrapper-content {
   grid-area: c;  
   background-image: url(https://www.popsci.com/app/uploads/2020/06/05/3NIEQB3SFVCMNHH6MHZ42FO6PA.jpg) ;
-
+  background-size: cover;
+  background-position: center center;
 }
 
 .font-link {
