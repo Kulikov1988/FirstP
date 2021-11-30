@@ -3,7 +3,8 @@ import { LoremIpsum, Avatar } from "react-lorem-ipsum";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UDPATE-NEW-POST-TEXT';
-
+const UPDATE_NEW_MESSAGE_BODY = 'UDPATE-NEW-MESSAGE-BODY';
+const SEND_MESSAGE = 'SEND-MESSAGE';
 
 let store = {
   _state: {
@@ -55,6 +56,7 @@ let store = {
           ),
         },
       ],
+      newMessageBody: ""
     },
     profilePage: {
       posts: [
@@ -120,7 +122,7 @@ let store = {
     },
   },
   _callSubscriber() {
-    console.log('state chaned');
+    console.log('state changed');
   },
 
   getState() {
@@ -141,14 +143,24 @@ let store = {
       this._state.profilePage.posts.push(newPost);
       this._state.profilePage.newPostText = '';
       this._callSubscriber(this._state);
-    }   else if (action.type === UPDATE_NEW_POST_TEXT) {
+    } else if (action.type === UPDATE_NEW_POST_TEXT) {
       this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber(this._state);
+    } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+      this._state.dialogsPage.newMessageBody = action.newMessage;
+      this._callSubscriber(this._state);
+    } else if (action.type === SEND_MESSAGE) {
+      let newMessage = this._state.dialogsPage.newMessageBody;
+      this._state.dialogsPage.newMessageBody = '';
+      this._state.dialogsPage.messageData.push({ id: 7, message: newMessage });
       this._callSubscriber(this._state);
     }
   }
 };
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text,})
+export const addPostCreator = () => ({ type: ADD_POST })
+export const updateNewPostTextCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text, })
+export const updateNewMessageBodyCreator = (text) => ({ type: UPDATE_NEW_MESSAGE_BODY, newMessage: text })
+export const sendMessageCreator = () => ({type: SEND_MESSAGE}) 
 
 export default store;
 window.state = store;
