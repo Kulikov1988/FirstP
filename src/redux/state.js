@@ -1,10 +1,8 @@
 import React from 'react';
 import { LoremIpsum, Avatar } from "react-lorem-ipsum";
-
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UDPATE-NEW-POST-TEXT';
-const UPDATE_NEW_MESSAGE_BODY = 'UDPATE-NEW-MESSAGE-BODY';
-const SEND_MESSAGE = 'SEND-MESSAGE';
+import dialogsReducer from './dialogs_reducer';
+import friendsReducer from './friends_page_reducer';
+import profileReducer from './profile_page_reducer';
 
 let store = {
   _state: {
@@ -133,34 +131,13 @@ let store = {
   },
 
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
-      let newPost = {
-        id: 5,
-        likesCount: 0,
-        message: this._state.profilePage.newPostText
-      };
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._state.friendsPage = friendsReducer(this._state.friendsPage, action);
 
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newPostText = '';
-      this._callSubscriber(this._state);
-    } else if (action.type === UPDATE_NEW_POST_TEXT) {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber(this._state);
-    } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-      this._state.dialogsPage.newMessageBody = action.newMessage;
-      this._callSubscriber(this._state);
-    } else if (action.type === SEND_MESSAGE) {
-      let newMessage = this._state.dialogsPage.newMessageBody;
-      this._state.dialogsPage.newMessageBody = '';
-      this._state.dialogsPage.messageData.push({ id: 7, message: newMessage });
-      this._callSubscriber(this._state);
-    }
+    this._callSubscriber(this._state);
   }
-};
-export const addPostCreator = () => ({ type: ADD_POST })
-export const updateNewPostTextCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text, })
-export const updateNewMessageBodyCreator = (text) => ({ type: UPDATE_NEW_MESSAGE_BODY, newMessage: text })
-export const sendMessageCreator = () => ({type: SEND_MESSAGE}) 
+}
 
 export default store;
 window.state = store;
