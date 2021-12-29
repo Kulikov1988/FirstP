@@ -6,8 +6,8 @@ console.log(s);
 
 const Navbar = (props) => {
   
-  let friendsData = props.state.friendsData.map((fData) => (
-    <Friends name={fData.name} id={fData.id} img={fData.img}/>
+  let friendsData = props.friendsData.map((fData) => (
+    <Friends name={fData.name} id={fData.id} img={fData.img_src}/>
   ));
 
   return (
