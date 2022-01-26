@@ -11,3 +11,13 @@
     width: 50px;
 }
 
+.loginBlock {
+    float: right;
+    margin: 20px;
+    color: white;
+}
+
+.loginBlock a {
+    color: white;
+}
+
