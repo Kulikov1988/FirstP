@@ -2,7 +2,6 @@ import React from "react";
 import s from "./Users.module.css";
 import userPhoto from "../../assets/images/profile_img.png";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 
 let Users = (props) => {
   let pagesCount =Math.ceil(props.totalUsersCount / props.pageSize);
@@ -11,7 +10,6 @@ let Users = (props) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-  
   return (
     <div>
       <div>
@@ -29,29 +27,13 @@ let Users = (props) => {
             </div>
             <div>
               {u.followed ? (
-                <button onClick={() => {
-                  axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/` + u.id, 
-                  { withCredentials: true,
-                    headers: {
-                    "API-KEY": "e8cf1cb3-8f02-458e-ab42-23a047b8441c"
-                  }})
-                     .then((response) => {
-                        if (response.data.resultCode === 0) {
-                        props.unFollow(u.id);
-                         }}); 
+                <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                  props.unfollow(u.id)
                     }}>
-                                 Unfollow</button>
+                         Unfollow</button>
               ) : (
-                <button onClick={() => {
-                  axios.post(`https://social-network.samuraijs.com/api/1.0/follow/` + u.id, {}, 
-                  {withCredentials: true,
-                    headers: {
-                      "API-KEY": "e8cf1cb3-8f02-458e-ab42-23a047b8441c"
-                    }})
-                    .then((response) => {
-                      if (response.data.resultCode === 0) {
-                        props.follow(u.id);
-                      }}); 
+                <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                  props.follow(u.id)
                   }}>
                          Follow</button>)}
             </div>
