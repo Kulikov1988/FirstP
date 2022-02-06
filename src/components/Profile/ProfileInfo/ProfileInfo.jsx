@@ -1,5 +1,6 @@
 import React, { Profiler } from "react";
 import s from "./Profileinfo.module.css";
+import ProfileStatus from "./ProfileStatus"
 
 const ProfileInfo = (props) => {
 
@@ -25,7 +26,8 @@ const ProfileInfo = (props) => {
               {` ${contact[0]} : ${contact[1]}`}
             </div>
         })}</div>
-        ava + description</div>
+        <ProfileStatus status={"Hello people!"} />
+        </div>
     </div>
   );
 };
