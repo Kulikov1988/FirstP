@@ -26,7 +26,7 @@ const ProfileInfo = (props) => {
               {` ${contact[0]} : ${contact[1]}`}
             </div>
         })}</div>
-        <ProfileStatus status={"Hello people!"} />
+        <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
         </div>
     </div>
   );

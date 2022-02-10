@@ -1,7 +1,6 @@
 import React from "react";
 import { LoremIpsum, Avatar } from "react-lorem-ipsum";
 
-const UPDATE_NEW_MESSAGE_BODY = 'UDPATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 let initialState = {
@@ -52,22 +51,16 @@ let initialState = {
       ),
     },
   ],
-  newMessageBody: ""
+  
 };
 
 const dialogsReducer = (state = initialState, action) => {
    
   switch (action.type) {
-    case UPDATE_NEW_MESSAGE_BODY: 
-      return {
-        ...state,
-        newMessageBody: action.newMessage
-      }  
-    case SEND_MESSAGE: 
-      let newMessage = state.newMessageBody;
+      case SEND_MESSAGE: 
+        let newMessage = action.newMessageBody;
        return {
         ...state,
-        newMessageBody: '',
         messageData: [...state.messageData, { id: 7, message: newMessage }]
       }    
     default:
@@ -75,7 +68,6 @@ const dialogsReducer = (state = initialState, action) => {
   }
 }
 
-export const updateNewMessageBodyCreator = (text) => ({ type: UPDATE_NEW_MESSAGE_BODY, newMessage: text })
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE })
+export const sendMessageCreator = (newMessageBody) => ({ type: SEND_MESSAGE, newMessageBody })
 
 export default dialogsReducer;
