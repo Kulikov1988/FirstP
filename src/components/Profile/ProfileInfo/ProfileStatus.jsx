@@ -1,5 +1,4 @@
 import React from "react";
-import s from './ProfileInfo'
 
 class ProfileStatus extends React.Component {
   state={
@@ -8,7 +7,6 @@ class ProfileStatus extends React.Component {
   }
 
   activateEditMode = () => {
-    console.log("this", this);
     this.setState(
       {
         editMode: true

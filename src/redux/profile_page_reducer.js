@@ -37,7 +37,6 @@ let initialState = {
       ),
     },
   ],
-  // newPostText: 'Privet Tolianchik',
   profile: null ,
   status: ""
 };
